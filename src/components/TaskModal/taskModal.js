@@ -1,9 +1,13 @@
 
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 
 export default {
-  
-  props: {
+    components: {
+        Datepicker
+      },
+    props: {
     isOpen: {
       type: Boolean,
       required: true
