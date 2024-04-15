@@ -1,5 +1,4 @@
 
-
 <script>
 import TodoList from './components/TodoList/TodoList.vue'
 
