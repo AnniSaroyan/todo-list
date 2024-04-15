@@ -1,13 +1,4 @@
-<script >
 
-</script>
-
-<template>
-  
-  <main>
-   
-  </main>
-</template>
 
 <script>
 import TodoList from './components/TodoList/TodoList.vue'
