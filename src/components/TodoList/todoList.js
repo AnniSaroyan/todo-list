@@ -1,10 +1,8 @@
 import TaskModal from '../TaskModal/TaskModal.vue'
-import Task from '../Task/Task.vue'
 
 export default {
   components: {
-    TaskModal,
-    Task
+    TaskModal
   },
   data() {
     return {
@@ -46,9 +44,7 @@ export default {
           console.log('err', err)
         })
 
-      // send the task to backend
-      //
-      //
+      
     }
   }
 }
