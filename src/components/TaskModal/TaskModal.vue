@@ -49,6 +49,7 @@
           ></v-btn>
 
           <v-btn
+          :disabled ="isSaveDisabled"
             class="saveColor"  
             text="Save"
             variant="tonal"

@@ -26,16 +26,22 @@ import '@vuepic/vue-datepicker/dist/main.css'
       },
       onSave(){
         const newTask={
-          title: this.title,
+          title: this.title.trim(),
           description: this.description,
-          date: this.dueDate
+          
   
         }
-        console.log(newTask)
-        console.log('hhhhhh')
+        if(this.dueDate){
+          newTask.date = this.dueDate.toISOString().slice(0, 10)
+        }
+        
         this.$emit('taskSave',newTask)
       }
     },
-    
+    computed: {
+      isSaveDisabled (){
+       return !this.title.trim()
+      }
+    }
    
   }
