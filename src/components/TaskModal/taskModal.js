@@ -39,8 +39,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
       }
     },
     computed: {
-      isSaveDisabled (){
-       return !this.title.trim()
+      isTitleValid (){
+       return !!this.title.trim()
       }
     }
    

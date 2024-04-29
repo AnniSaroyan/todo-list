@@ -15,9 +15,9 @@
           <v-row dense>
             <v-col
               cols="12"              
-              sm="12"
-            > <v-text-field
-                label="Title*"                
+              sm="12" >
+               <v-text-field :class= "{invalid: !isTitleValid}"
+                label="Title *"                
                 required v-model="title"
               ></v-text-field>            
             </v-col> 
@@ -34,7 +34,7 @@
           </v-row>
 
           <v-chip color="red" class="text-caption text-medium " >
-            *indicates required field
+            * indicates required field
     </v-chip>          
         </v-card-text>
 
@@ -49,7 +49,7 @@
           ></v-btn>
 
           <v-btn
-          :disabled ="isSaveDisabled"
+          :disabled ="!isTitleValid"
             class="saveColor"  
             text="Save"
             variant="tonal"
@@ -77,5 +77,8 @@
 }
 .text-medium{
   margin-top: 10px;
+}
+.invalid .v-input__control{
+  border: 1px solid red;
 }
 </style>
