@@ -9,7 +9,7 @@
     > <v-card
     
         prepend-icon="mdi-account"
-        title="Add new task"
+        :title="modalTitle"
       >
         <v-card-text>
           <v-row dense>

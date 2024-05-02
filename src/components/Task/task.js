@@ -16,5 +16,10 @@ export default {
     }
 
   },
+  methods: {
+    onEdit() {
+      this.$emit('taskEdit')
+    }
+  }
  
 }
