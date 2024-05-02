@@ -19,9 +19,13 @@
     </v-row>
   </v-container>
 
-  <v-container >   
+ 
+
+  <v-container >
     <v-row >
-       <Task v-for = "taskData in tasks" :data="taskData" :key="taskData._id"/> 
+      <v-col v-for = "taskData in tasks" :data="taskData" :key="taskData._id" cols="12" xs="12" sm="6" md="4" lg="3">
+        <Task  :data="taskData" @taskEdit="onTaskEdit(taskData)" />      
+      </v-col>
     </v-row>
   </v-container>
 

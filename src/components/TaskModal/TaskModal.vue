@@ -4,7 +4,7 @@
 <template>
   <div class="pa-4 text-center">
     <v-dialog
-      v-model="isOpen"
+    :modelValue="isOpen" @update:modelValue="onClose"
       max-width="600"   
     > <v-card
     

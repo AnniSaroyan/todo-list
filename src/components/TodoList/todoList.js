@@ -31,8 +31,7 @@ export default {
       taskApi
 
       .getTasks()
-      .then((tasks)=>{
-        console.log(tasks)
+      .then((tasks)=>{       
         this.tasks=tasks        
       })      
       .catch((err) => {
