@@ -25,10 +25,17 @@ import '@vuepic/vue-datepicker/dist/main.css'
         const { title, description, date } = this.editingTask
         this.title = title
         this.description = description
-        this.dueDate = new Date(this.editingTask.date)
+        this.dueDate = date ? new Date(date) : ''
       }
     },
+    mounted() {
+      this.$refs.title.focus()
+    },
     methods: {
+      moveToDescriptionField() {
+        this.$refs.description.focus();
+      },
+      
       onClose(){
         this.$emit('close')
       },
@@ -37,7 +44,7 @@ import '@vuepic/vue-datepicker/dist/main.css'
           title: this.title.trim(),
           description: this.description
         }
-        console.log(this.dueDate)
+        
         if (this.dueDate) {
           task.date = this.dueDate.toISOString().slice(0, 10)
         } else {
@@ -53,7 +60,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
         }
   
         this.$emit('taskAdd', task)
-      }
+      },
+     
     },
     computed: {
       isTitleValid (){
@@ -65,6 +73,8 @@ import '@vuepic/vue-datepicker/dist/main.css'
         }
         return 'Add new task'
       }
-    }
+    },
+
+   
    
   }

@@ -104,6 +104,15 @@ export default {
   onTaskEdit(editingTask) {
     this.editingTask = editingTask
   },
+  onTaskDelete(taskId) {
+    taskApi
+      .deleteTask(taskId)
+      .then(() => {
+        this.tasks = this.tasks.filter((t) => t._id !== taskId)
+        this.$toast.success('The task have been deleted successfully!')
+      })
+      .catch(this.handleError)
+  }
 
   }
 }

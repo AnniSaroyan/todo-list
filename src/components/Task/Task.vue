@@ -24,7 +24,7 @@
       <v-btn color="warning" variant="elevated" @click="onEdit">
         <v-icon icon="mdi-archive-edit-outline" />
       </v-btn>
-      <v-btn color="error" variant="elevated">
+      <v-btn color="error" variant="elevated" @click ="onDelete">
         <v-icon icon="mdi-delete-forever-outline" />
       </v-btn>
     </v-card-actions>
