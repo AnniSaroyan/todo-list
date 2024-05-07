@@ -22,6 +22,9 @@ export default {
     },
     onDelete() {
       this.$emit('taskDelete')
+    },
+    toggleStatus() {
+      this.data.status = this.data.status === 'active' ? 'done' : 'active';
     }
   }
  
