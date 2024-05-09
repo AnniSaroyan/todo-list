@@ -68,11 +68,11 @@
 
 <style>
 .closeColor{
-  background-color:#1DE9B6;
+  background-color:rgb(0 204 204);
   color: rgb(35, 37, 37);
 }
 .saveColor{
-  background-color: #76FF03;
+  background-color: rgb(0 255 64);
   color: rgb(35, 37, 37);
   
 }

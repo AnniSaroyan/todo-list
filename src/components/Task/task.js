@@ -23,8 +23,14 @@ export default {
     onDelete() {
       this.$emit('taskDelete')
     },
-    toggleStatus() {
+
+    toggleStatus() {      
+      
       this.data.status = this.data.status === 'active' ? 'done' : 'active';
+      const jsonData = JSON.stringify(this.data);
+      this.$emit('taskStatus', jsonData)
+      console.log(this.data)
+      
     }
   }
  

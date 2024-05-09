@@ -32,6 +32,8 @@ export default {
         this.isTaskModalOpen = true
       }
     },
+    
+    
     isTaskModalOpen(isOpen) {
       if (!isOpen && this.editingTask) {
         this.editingTask = null
@@ -69,7 +71,7 @@ export default {
 
    },
    onTaskStatusChange(editedTask) {
-    taskApi
+    taskApi    
       .updateTask(editedTask)
       .then((updatedTask) => {
         this.findAndReplaceTask(updatedTask)
@@ -83,8 +85,20 @@ export default {
       })
       .catch(this.handleError)
   },
+
+  // newStatus(taskStatus){
+  //   taskApi
+  //   // const newStatus = 'done'    
+  //   .updateTask(taskStatus)
+  //   .then (()=>{
+  //     this.findAndReplaceTask(updatedTask)
+  //     this.$toast.success('Task status has been successfully updated.');
+  //   })
+  //   .catch(this.handleError)
+  // },
    onTaskSave(editedTask) {
     taskApi
+    
       .updateTask(editedTask)
       .then((updatedTask) => {
         this.findAndReplaceTask(updatedTask)
@@ -99,6 +113,7 @@ export default {
   },
    handleError(error) {
     this.$toast.error(error.message)
+    console.log(error.message)
   },
 
   onTaskEdit(editingTask) {
@@ -113,6 +128,7 @@ export default {
       })
       .catch(this.handleError)
   }
+  
 
   }
 }

@@ -13,6 +13,7 @@ class TaskApi {
     if (body) {
       params.body = JSON.stringify(body)
     }
+  
 
     const host = `${this.apiHost}/task/${url}`
     return fetch(host, params).then(async (res) => {
@@ -28,6 +29,7 @@ class TaskApi {
     })
   }
   addNewTask(task) {
+    
     return this.request('POST', '', task)
   }
   getTasks() {
@@ -38,8 +40,12 @@ class TaskApi {
     return this.request('DELETE', taskId)
   }
   updateTask(task) {
+   
     return this.request('PUT', task._id, task)
   }
+
+  
+  
 }
 
 export default TaskApi
