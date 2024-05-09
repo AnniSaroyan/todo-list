@@ -19,7 +19,7 @@
 
     <v-card-actions >
       <v-btn :color="data.status === 'active' ? 'success' : 'cyan-darken-3'"  variant="elevated" @click="toggleStatus" >       
-        <v-icon>{{ data.status === 'active' ? 'mdi-check-outline' : ' mdi-check-circle' }}</v-icon>
+        <v-icon>{{ data.status === 'active' ? 'mdi-check-outline' : 'mdi-arrow-u-right-bottom-bold' }}</v-icon>
       </v-btn>
       <v-btn color="warning" variant="elevated" @click="onEdit">
         <v-icon icon="mdi-archive-edit-outline" />

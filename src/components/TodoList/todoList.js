@@ -86,16 +86,7 @@ export default {
       .catch(this.handleError)
   },
 
-  // newStatus(taskStatus){
-  //   taskApi
-  //   // const newStatus = 'done'    
-  //   .updateTask(taskStatus)
-  //   .then (()=>{
-  //     this.findAndReplaceTask(updatedTask)
-  //     this.$toast.success('Task status has been successfully updated.');
-  //   })
-  //   .catch(this.handleError)
-  // },
+ 
    onTaskSave(editedTask) {
     taskApi
     
