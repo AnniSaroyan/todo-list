@@ -17,6 +17,10 @@
 
     <v-card-text> Due date: {{dueDate}} </v-card-text>
 
+    <v-card-text>
+      <RouterLink :to="`/task/${data._id}`">Show more...</RouterLink>
+    </v-card-text>
+
     <v-card-actions >
       <v-btn :color="data.status === 'active' ? 'success' : 'cyan-darken-3'"  variant="elevated" @click="toggleStatus" >       
         <v-icon>{{ data.status === 'active' ? 'mdi-check-outline' : 'mdi-arrow-u-right-bottom-bold' }}</v-icon>
