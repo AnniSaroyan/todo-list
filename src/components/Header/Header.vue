@@ -1,53 +1,41 @@
+
+
 <template>
-    <template>
-  <v-card>
-    <v-layout>
-      <v-app-bar
-        color="primary"
-        prominent
-      >
-        <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-
-        <v-toolbar-title>My files</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <template v-if="$vuetify.display.mdAndUp">
-          <v-btn icon="mdi-magnify" variant="text"></v-btn>
-
-          <v-btn icon="mdi-filter" variant="text"></v-btn>
-        </template>
-
-        <v-btn icon="mdi-dots-vertical" variant="text"></v-btn>
-      </v-app-bar>
-
-      <v-navigation-drawer
-        v-model="drawer"
-        :location="$vuetify.display.mobile ? 'bottom' : undefined"
-        temporary
-      >
-        <v-list
-          :items="items"
-        ></v-list>
-      </v-navigation-drawer>
-
-      <v-main style="height: 500px;">
-        <v-card-text>
-          The navigation drawer will appear from the bottom on smaller size screens.
-        </v-card-text>
-      </v-main>
-    </v-layout>
-  </v-card>
+  <v-app>
+    <v-app-bar app color="blue-lighten-1" dark fixed >
+      <v-toolbar-title class="white--text">My Todo List</v-toolbar-title>
+      <v-spacer></v-spacer>
+      
+      <v-list-item v-for="item in items" :key="item.id">
+    <router-link :to="item.link" class="v-list-item ">
+      <v-list-item-icon>
+        <v-icon>{{ item.icon }}</v-icon>
+      </v-list-item-icon>
+      <v-list-item-content>
+        <v-list-item-title>{{ item.text }}</v-list-item-title>
+      </v-list-item-content>
+      
+          </router-link>
+          
+  </v-list-item>
+  <v-btn icon>
+        <a href="https://github.com/AnniSaroyan/todo-list" target="_blank">
+    <v-icon>mdi-github</v-icon>
+  </a></v-btn>
+  <v-btn icon>
+        <a href="https://www.linkedin.com" target="_blank">
+          <v-icon>mdi-linkedin</v-icon>
+        </a>
+      </v-btn>
+    </v-app-bar>
+    <v-main>
+      <router-view></router-view>
+    </v-main>
+  </v-app>
 </template>
 
-    <header>
 
-        <a href = "./contact-us"> contact</a>
-        <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/contact-us">Contact us</RouterLink>
-    <RouterLink to="/about">About us</RouterLink>
-    </header>
-   
-</template>
 
 <script src="./header.js"></script>
+
+

@@ -1,33 +1,15 @@
 
-    
-  export default {
-    data: () => ({
-      drawer: false,
-      group: null,
+export default {
+  name: 'App',
+  data() {
+    return {
+      
       items: [
-        {
-          title: 'Foo',
-          value: 'foo',
-        },
-        {
-          title: 'Bar',
-          value: 'bar',
-        },
-        {
-          title: 'Fizz',
-          value: 'fizz',
-        },
-        {
-          title: 'Buzz',
-          value: 'buzz',
-        },
-      ],
-    }),
-
-    watch: {
-      group () {
-        this.drawer = false
-      },
-    },
+        { title: 'Home', link: '/', icon: 'mdi-home' },
+        { title: 'About', link: '/about', icon: 'mdi-information' },
+        { title: 'Contact Us', link: '/contact-us', icon: 'mdi-email' }
+      ]
+    };
   }
+};
 

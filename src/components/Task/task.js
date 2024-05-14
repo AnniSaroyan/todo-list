@@ -1,11 +1,14 @@
 
-
 export default {
   props: {
     data: {
       type: Object,
       required: true
-    }
+    },
+    isSelected: {
+      type: Boolean,
+      default: false
+    },
   },
   computed: {
     createdAt() {
@@ -28,9 +31,12 @@ export default {
       
       this.data.status = this.data.status === 'active' ? 'done' : 'active';
       
-      this.$emit('taskStatus',this. data)      
+      this.$emit('taskStatus',this.data)      
       
-    }
+    },
+    onSelect() {
+      this.$emit('taskSelect')
+    },
   }
  
 }

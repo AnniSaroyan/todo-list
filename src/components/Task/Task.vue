@@ -3,11 +3,11 @@
   <v-card  class="mx-auto my-4" elevation="16" max-width="344">
   
     <v-card-item>
-       <v-checkbox></v-checkbox>
+      <v-checkbox @update:modelValue="onSelect" :modelValue="isSelected"></v-checkbox>
       <v-card-title> {{ data.title }} </v-card-title>
     </v-card-item>
 
-    <v-card-text >
+    <v-card-text class="description" >
       {{ data.description }}
     </v-card-text>
 
@@ -31,9 +31,16 @@
       <v-btn color="error" variant="elevated" @click ="onDelete">
         <v-icon icon="mdi-delete-forever-outline" />
       </v-btn>
-    </v-card-actions>
-    
+    </v-card-actions>    
   </v-card>
 </template>
 
  <script src="./task.js"></script> 
+
+ <style scoped>
+.description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+</style>
