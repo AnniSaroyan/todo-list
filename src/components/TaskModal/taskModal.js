@@ -73,8 +73,6 @@ import '@vuepic/vue-datepicker/dist/main.css'
         }
         return 'Add new task'
       }
-    },
-
-   
+    },   
    
   }

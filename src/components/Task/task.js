@@ -16,8 +16,7 @@ export default {
     },
     dueDate() {
       return this.data.date?.slice(0, 10) || 'none'
-    }
-
+    },
   },
   methods: {
     onEdit() {
@@ -27,13 +26,10 @@ export default {
       this.$emit('taskDelete')
     },
 
-    toggleStatus() {     
-      
-      this.data.status = this.data.status === 'active' ? 'done' : 'active';
-      
-      this.$emit('taskStatus',this.data)      
-      
-    },
+    toggleStatus() {
+      const updatedTask = this.data.status = this.data.status === 'active' ? 'done' : 'active';      
+      this.$emit('taskStatus', updatedTask)    
+     },
     onSelect() {
       this.$emit('taskSelect')
     },

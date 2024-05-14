@@ -4,7 +4,6 @@ import TaskApi from '../../../utils/taskApi.js'
 import TaskModal from '../../TaskModal/TaskModal.vue'
 
 const taskApi = new TaskApi()
-
 export default {
   components: {
     TaskModal
@@ -31,6 +30,7 @@ export default {
     toggleTaskModal() {
       this.isEditModalOpen = !this.isEditModalOpen
     },
+
     getTask() {
       const taskId = this.$route.params.taskId
       taskApi
@@ -40,11 +40,10 @@ export default {
         })
         .catch(this.handleError)
     },
-   
-    
+
     onSave(editingTask) {
       this.toggleLoading(); 
-    
+      this.task = editingTask;
       taskApi.updateTask(editingTask)
         .then(() => {      
           this.isEditModalOpen = false; 
@@ -75,8 +74,8 @@ export default {
         .finally(() => {
           this.toggleLoading()
         })
-    },
-    
+    },   
+
     onDelete() {
       this.toggleLoading()
       const taskId = this.task._id
@@ -91,7 +90,7 @@ export default {
           this.toggleLoading()
         })
     },
-    handleError(error) {
+      handleError(error) {
       this.$toast.error(error.message)
     },
   }

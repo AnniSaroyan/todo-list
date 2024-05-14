@@ -8,11 +8,9 @@
       @close="toggleTaskModal"
       @taskSave="onSave"
     />
-    <v-card-item>
-   
+    <v-card-item>   
       <v-card-title> {{ task.title }} </v-card-title>
     </v-card-item>
-
     <v-card-text >
       {{ task.description }}
     </v-card-text>
@@ -33,8 +31,7 @@
       <v-btn color="error" variant="elevated" @click ="onDelete">
         <v-icon icon="mdi-delete-forever-outline" />
       </v-btn>
-    </v-card-actions>
-    
+    </v-card-actions>    
   </v-card>
   <h4 v-else></h4>
 </template>

@@ -7,13 +7,11 @@ import TaskApi from '../../../utils/taskApi.js'
 
 const taskApi = new TaskApi()
 
-
 export default {
   components:{
     TaskModal,
     Task,
-    ConfirmDialog
-   
+    ConfirmDialog   
   },
   
   data() {
@@ -23,7 +21,6 @@ export default {
       editingTask: null,
       selectedTasks: new Set(),
       isDeleteDialogOpen: false
-
     }
   },
   created() {
@@ -35,8 +32,7 @@ export default {
       if (newValue) {
         this.isTaskModalOpen = true
       }
-    },
-    
+    },    
     
     isTaskModalOpen(isOpen) {
       if (!isOpen && this.editingTask) {
@@ -59,8 +55,7 @@ export default {
     ...mapMutations(['toggleLoading']),
     toggleTaskModal (){
       this.isTaskModalOpen = !this.isTaskModalOpen
-    },
-        
+    },        
 
     getTasks(){
       this.toggleLoading()
@@ -72,10 +67,9 @@ export default {
       .catch(this.handleError) 
       .finally(() => {
         this.toggleLoading()
-      })
-            
+      })            
     },
-
+    
     onTaskAdd(task){
       this.toggleLoading()
      taskApi
@@ -151,7 +145,8 @@ export default {
       })
   },
    
-  toggleDeleteDialog() {
+  toggleDeleteDialog() {   
+   
     this.isDeleteDialogOpen = !this.isDeleteDialogOpen
     if (!this.isDeleteDialogOpen) {
       this.selectedTasks.clear()
@@ -161,10 +156,9 @@ export default {
     this.toggleLoading()
     taskApi
       .deleteTasks([...this.selectedTasks])
-      .then(() => {
+      .then(() => {        
+        this.tasks = this.tasks.filter((t) =>!this.selectedTasks.has(t._id))
         this.toggleDeleteDialog()
-        this.tasks = this.tasks.filter((t) => !this.selectedTasks.has(t._id))
-        this.selectedTasks.clear()
         this.$toast.success('The selected tasks have been deleted successfully!')
       })
       .catch(this.handleError)

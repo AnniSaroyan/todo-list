@@ -20,8 +20,5 @@ export default {
 <template>
   <Loader v-if="isLoading" />
   <HeaderComponent />
-  <main>
-    <RouterView />
-  </main>
   <FooterComponent />
 </template>

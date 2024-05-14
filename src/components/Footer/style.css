@@ -1,0 +1,32 @@
+.footer {
+    background-color: #343232;
+    color: #faf8f8;
+    padding: 20px 0;
+    position: static;
+    bottom: 0;
+    left: 0;
+    width: 100%;  
+    position: fixed;
+    position: relative;   
+  }
+  
+  .footer h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer a {
+    color: #d6d4d7;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .footer a:hover {
+    color: #42a5f5;
+    
+  }
+  a.icon{
+    color: #2a292f;
+    padding-top: 10px;
+  }

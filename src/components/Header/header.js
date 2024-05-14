@@ -1,6 +1,6 @@
 
 export default {
-  name: 'App',
+  name: 'v-header',
   data() {
     return {
       

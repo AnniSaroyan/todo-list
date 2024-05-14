@@ -51,7 +51,6 @@
     <v-icon icon="mdi-delete-outline" class ="icon"/> Delete selected
   </v-btn>
 </template>
-
 <script src="./todoList.js"></script>
 
 <style scoped>
@@ -63,13 +62,11 @@
   right: -145px;
   bottom: 40px;
 }
-
 .delete-selected-btn:hover {
   animation-name: btn-animation;
   animation-duration: 0.8s;
   right: 20px;
 }
-
 @keyframes btn-animation {
   from {
     right: -145px;
