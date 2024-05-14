@@ -1,24 +1,24 @@
-
 <script>
+
+import { mapGetters } from 'vuex'
 import Header from './components/Header/Header.vue'
 import Footer from './components/Footer/Footer.vue'
+import Loader from './components/Loader/Loader.vue'
 
 export default {
   components: {
     HeaderComponent: Header,
-    FooterComponent: Footer
+    FooterComponent: Footer,
+    Loader
+  },
+  computed: {
+    ...mapGetters(['isLoading'])
   }
 }
 </script>
 
 <template>
-  
-  
-    <HeaderComponent />
-  <main>
-    <RouterView />
-  </main>
-  
+  <Loader v-if="isLoading" />
+  <HeaderComponent />
   <FooterComponent />
-
 </template>

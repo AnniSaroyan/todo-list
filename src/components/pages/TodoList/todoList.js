@@ -1,26 +1,26 @@
 
-
+import { mapMutations } from 'vuex'
 import TaskModal from '../../TaskModal/TaskModal.vue'
+import ConfirmDialog from '../../ConfirmDialog/ConfirmDialog.vue'
 import Task from '../../Task/Task.vue'
-import SingleTask from '../../pages/SingleTask/SingleTask.vue'
 import TaskApi from '../../../utils/taskApi.js'
 
 const taskApi = new TaskApi()
-
 
 export default {
   components:{
     TaskModal,
     Task,
-    SingleTask   
+    ConfirmDialog   
   },
   
   data() {
     return {
-      isTaskModalOpen:false,
+      isTaskModalOpen: false,
       tasks: [],
-      editingTask:null
-
+      editingTask: null,
+      selectedTasks: new Set(),
+      isDeleteDialogOpen: false
     }
   },
   created() {
@@ -32,8 +32,7 @@ export default {
       if (newValue) {
         this.isTaskModalOpen = true
       }
-    },
-    
+    },    
     
     isTaskModalOpen(isOpen) {
       if (!isOpen && this.editingTask) {
@@ -42,24 +41,37 @@ export default {
     }
   },
 
+  computed: {
+    isDeleteSelectedBtnDisabled() {
+      return !this.selectedTasks.size
+    },
+
+    confirmDialogText() {
+      return `You are going to delete ${this.selectedTasks.size} task(s), are you sure?`
+    }
+  },
+
   methods: {
+    ...mapMutations(['toggleLoading']),
     toggleTaskModal (){
       this.isTaskModalOpen = !this.isTaskModalOpen
-    },
-  
-        
+    },        
 
     getTasks(){
+      this.toggleLoading()
       taskApi
       .getTasks()
       .then((tasks)=>{       
         this.tasks=tasks        
       })      
       .catch(this.handleError) 
-            
+      .finally(() => {
+        this.toggleLoading()
+      })            
     },
-
+    
     onTaskAdd(task){
+      this.toggleLoading()
      taskApi
     .addNewTask(task)
     .then((newTask)=>{
@@ -69,13 +81,14 @@ export default {
 })
 
 .catch(this.handleError)
-
-   },
-   
+.finally(() => {
+  this.toggleLoading()
+})
+   },  
  
    onTaskSave(editedTask) {
-    taskApi
-    
+    this.toggleLoading()
+    taskApi    
       .updateTask(editedTask)
       .then((updatedTask) => {
         this.findAndReplaceTask(updatedTask)
@@ -83,17 +96,20 @@ export default {
         this.$toast.success('The task have been updated successfully!')
       })
       .catch(this.handleError)
+      .finally(() => {
+        this.toggleLoading()
+      })
   },
   findAndReplaceTask(updatedTask) {
     const index = this.tasks.findIndex((t) => t._id === updatedTask._id)
     this.tasks[index] = updatedTask
   },
    handleError(error) {
-    this.$toast.error(error.message)
-   
+    this.$toast.error(error.message)   
   },
 
   onTaskStatusChange(editedTask) {
+    this.toggleLoading()
     taskApi    
       .updateTask(editedTask)
       .then((updatedTask) => {
@@ -107,12 +123,16 @@ export default {
         this.$toast.success(message)
       })
       .catch(this.handleError)
+      .finally(() => {
+        this.toggleLoading()
+      })
   },
 
   onTaskEdit(editingTask) {
     this.editingTask = editingTask
   },
   onTaskDelete(taskId) {
+    this.toggleLoading()
     taskApi
       .deleteTask(taskId)
       .then(() => {
@@ -120,9 +140,40 @@ export default {
         this.$toast.success('The task have been deleted successfully!')
       })
       .catch(this.handleError)
+      .finally(() => {
+        this.toggleLoading()
+      })
   },
    
-
+  toggleDeleteDialog() {   
+   
+    this.isDeleteDialogOpen = !this.isDeleteDialogOpen
+    if (!this.isDeleteDialogOpen) {
+      this.selectedTasks.clear()
+    }
+  },
+  onSelectedTasksDelete() {
+    this.toggleLoading()
+    taskApi
+      .deleteTasks([...this.selectedTasks])
+      .then(() => {        
+        this.tasks = this.tasks.filter((t) =>!this.selectedTasks.has(t._id))
+        this.toggleDeleteDialog()
+        this.$toast.success('The selected tasks have been deleted successfully!')
+      })
+      .catch(this.handleError)
+      .finally(() => {
+        this.toggleLoading()
+      })
+  },
+  toggleTaskId(taskId) {
+    if (this.selectedTasks.has(taskId)) {
+      this.selectedTasks.delete(taskId)
+    } else {
+      this.selectedTasks.add(taskId)
+    }
+  },
+ 
   }
 }
 

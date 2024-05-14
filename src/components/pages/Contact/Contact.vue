@@ -1,7 +1,37 @@
 <template>
-    <h1>
-        contact us
-    </h1>
-</template>
-
-<script src="./contact.js"></script>
+    <div>
+        <img  src="../images/c-img.jpg" alt="contact us images" style="height:150px; width:300px; margin-left: 38%; ">
+       </div>
+    <v-container>
+      <v-row align="center" justify="center">
+        <v-col cols="12" lg="6" md="6" sm="8" xs="12">
+          <v-sheet class="mx-auto">
+            <v-form ref="form">
+              <v-text-field ref = "name"
+                v-model.trim="name"
+                :rules="nameRules"
+                label="Name"
+                required
+                @keyup.enter="moveToEmailField"
+              ></v-text-field>
+              <v-text-field ref="email"
+                v-model="email"
+                :rules="emailRules"
+                label="Email"
+                required
+                type="email"
+                @keyup.enter="moveToMessageField"
+              ></v-text-field>
+              <v-textarea ref="messange" label="Message" v-model.trim="message"></v-textarea>  
+              <div class="d-flex flex-column">
+                <v-btn class="mt-4" color="success" block @click="sendForm"> Send </v-btn>  
+                <v-btn class="mt-4" color="error" block @click="reset"> Reset Form </v-btn>
+              </div>
+            </v-form>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
+  </template>
+  
+  <script src="./contact.js"></script>
