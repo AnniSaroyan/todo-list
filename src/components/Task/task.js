@@ -19,6 +19,17 @@ export default {
   methods: {
     onEdit() {
       this.$emit('taskEdit')
+    },
+    onDelete() {
+      this.$emit('taskDelete')
+    },
+
+    toggleStatus() {     
+      
+      this.data.status = this.data.status === 'active' ? 'done' : 'active';
+      
+      this.$emit('taskStatus',this. data)      
+      
     }
   }
  

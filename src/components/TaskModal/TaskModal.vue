@@ -16,17 +16,18 @@
             <v-col
               cols="12"              
               sm="12" >
-               <v-text-field :class= "{invalid: !isTitleValid}"
+               <v-text-field ref = "title" :class= "{invalid: !isTitleValid}"
                 label="Title *"                
                 required v-model="title"
+                @keyup.enter="moveToDescriptionField"
               ></v-text-field>            
             </v-col> 
 
           <v-col cols="12" sm="12">
-            <v-textarea label="Description" v-model="description"></v-textarea>
+            <v-textarea ref = "description" label="Description" v-model="description" ></v-textarea>
             </v-col>
 
-             <v-col cols="12" sm="12">
+             <v-col cols="12" sm="12" >
               Due date
                 <datepicker v-model="dueDate" />
             </v-col> 
@@ -67,11 +68,11 @@
 
 <style>
 .closeColor{
-  background-color:#1DE9B6;
+  background-color:rgb(0 204 204);
   color: rgb(35, 37, 37);
 }
 .saveColor{
-  background-color: #76FF03;
+  background-color: rgb(0 255 64);
   color: rgb(35, 37, 37);
   
 }

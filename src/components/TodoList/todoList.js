@@ -32,6 +32,8 @@ export default {
         this.isTaskModalOpen = true
       }
     },
+    
+    
     isTaskModalOpen(isOpen) {
       if (!isOpen && this.editingTask) {
         this.editingTask = null
@@ -69,7 +71,7 @@ export default {
 
    },
    onTaskStatusChange(editedTask) {
-    taskApi
+    taskApi    
       .updateTask(editedTask)
       .then((updatedTask) => {
         this.findAndReplaceTask(updatedTask)
@@ -83,8 +85,11 @@ export default {
       })
       .catch(this.handleError)
   },
+
+ 
    onTaskSave(editedTask) {
     taskApi
+    
       .updateTask(editedTask)
       .then((updatedTask) => {
         this.findAndReplaceTask(updatedTask)
@@ -99,11 +104,22 @@ export default {
   },
    handleError(error) {
     this.$toast.error(error.message)
+    console.log(error.message)
   },
 
   onTaskEdit(editingTask) {
     this.editingTask = editingTask
   },
+  onTaskDelete(taskId) {
+    taskApi
+      .deleteTask(taskId)
+      .then(() => {
+        this.tasks = this.tasks.filter((t) => t._id !== taskId)
+        this.$toast.success('The task have been deleted successfully!')
+      })
+      .catch(this.handleError)
+  }
+  
 
   }
 }
