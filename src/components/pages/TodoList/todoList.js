@@ -1,8 +1,9 @@
 
 
-import TaskModal from '../TaskModal/TaskModal.vue'
-import Task from '../Task/Task.vue'
-import TaskApi from '../../utils/taskApi.js'
+import TaskModal from '../../TaskModal/TaskModal.vue'
+import Task from '../../Task/Task.vue'
+import SingleTask from '../../pages/SingleTask/SingleTask.vue'
+import TaskApi from '../../../utils/taskApi.js'
 
 const taskApi = new TaskApi()
 
@@ -10,8 +11,8 @@ const taskApi = new TaskApi()
 export default {
   components:{
     TaskModal,
-    Task   
-       
+    Task,
+    SingleTask   
   },
   
   data() {
@@ -70,22 +71,7 @@ export default {
 .catch(this.handleError)
 
    },
-   onTaskStatusChange(editedTask) {
-    taskApi    
-      .updateTask(editedTask)
-      .then((updatedTask) => {
-        this.findAndReplaceTask(updatedTask)
-        let message
-        if (updatedTask.status === 'done') {
-          message = 'Congratulations, the task is done!'
-        } else {
-          message = 'You have successfully restored the task!'
-        }
-        this.$toast.success(message)
-      })
-      .catch(this.handleError)
-  },
-
+   
  
    onTaskSave(editedTask) {
     taskApi
@@ -104,7 +90,23 @@ export default {
   },
    handleError(error) {
     this.$toast.error(error.message)
-    console.log(error.message)
+   
+  },
+
+  onTaskStatusChange(editedTask) {
+    taskApi    
+      .updateTask(editedTask)
+      .then((updatedTask) => {
+        this.findAndReplaceTask(updatedTask)
+        let message
+        if (updatedTask.status === 'done') {
+          message = 'Congratulations, the task is done!'
+        } else {
+          message = 'You have successfully restored the task!'
+        }
+        this.$toast.success(message)
+      })
+      .catch(this.handleError)
   },
 
   onTaskEdit(editingTask) {
@@ -118,8 +120,8 @@ export default {
         this.$toast.success('The task have been deleted successfully!')
       })
       .catch(this.handleError)
-  }
-  
+  },
+   
 
   }
 }
